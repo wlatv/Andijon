@@ -1,16 +1,18 @@
-# Python bazasida ishlaydi
 FROM python:3.9
 
-# Ishchi katalog yaratamiz
 WORKDIR /app
 
-# GitHub'dan Kinobot kodini yuklab olamiz
+# Git va boshqa kerakli paketlar
 RUN apt-get update && apt-get install -y git && apt-get clean
-RUN git clone https://github.com/wlatv/Kinobot.git /app
 
-# Talab qilingan kutubxonalarni o‘rnatamiz
-RUN pip install --no-cache-dir telethon
+# Kinobot'ni yuklab olamiz
+RUN git clone https://github.com/wlatv/Kinobot.git
 
-WORKDIR /app/kinobot
+# Ishchi katalogni o‘zgartiramiz — bot.py joylashgan joyga
+WORKDIR /app/Kinobot
+
+# Kutubxonalarni o‘rnatamiz
+RUN pip install --no-cache-dir -r requirements.txt
+
 # Botni ishga tushiramiz
 CMD ["python", "bot.py"]
