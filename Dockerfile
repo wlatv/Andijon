@@ -11,5 +11,6 @@ RUN git clone https://github.com/wlatv/Kinobot.git /app
 # Talab qilingan kutubxonalarni o‘rnatamiz
 RUN pip install --no-cache-dir telethon
 
+WORKDIR /app/kinobot
 # Botni ishga tushiramiz
 CMD ["python", "bot.py"]
